@@ -1,0 +1,27 @@
+version: "3"
+services:
+  frontend:
+    build: ./frontend
+    container_name: "frontend"
+    ports:
+      - "8080:80"
+  backend:
+    image: ./backend
+    container_name: "backend"
+    ports:
+      - "8081:8081"
+    links:
+      - db
+    depends_on:
+      - db
+  db:
+    image: mongo
+    container_name: "mongodb"
+    volumes:
+         - ./docker-entrypoint.sh:/entrypoint.sh
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: mongouseradmin
+      MONGO_INITDB_ROOT_PASSWORD: mongopassadmin
+      MONGO_INITDB_DATABASE: dbname
+    ports:
+      - "27017:27017"
