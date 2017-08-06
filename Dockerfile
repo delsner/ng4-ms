@@ -12,5 +12,6 @@ COPY . /app
 RUN ng build
 
 FROM nginx
-COPY nginx.conf /etc/nginx/nginx.conf # optional: add nginx config to reverse proxy /api calls to backend
+# optional: add nginx config to reverse proxy /api calls to backend
+COPY nginx.conf /etc/nginx/nginx.conf
 COPY --from=builder /app/dist /usr/share/nginx/html
