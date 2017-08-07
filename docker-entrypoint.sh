@@ -14,7 +14,8 @@ if [ ! -f /data/db/storage.bson ]; then
       roles: ['dbAdmin']
     });
     db.auth('$USER', '$PASSWORD');
-  "
+    db.grantRolesToUser('$USER',['readWrite']);
+"
   mongod --shutdown
   echo
   echo "Entrypoint added user '$USER' with password on database '$DATABASE'"
