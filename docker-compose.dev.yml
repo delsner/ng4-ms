@@ -1,0 +1,14 @@
+version: "3"
+services:
+  db:
+    image: mongo
+    container_name: "mongodb"
+    volumes:
+      - ./docker-entrypoint.sh:/entrypoint.sh
+      - ./data:/data/db
+    environment:
+     MONGO_INITDB_ROOT_USERNAME: mongouseradmin
+     MONGO_INITDB_ROOT_PASSWORD: mongopassadmin
+     MONGO_INITDB_DATABASE: dbname
+    ports:
+      - "27017:27017"
